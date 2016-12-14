@@ -1,0 +1,9 @@
+<md-grid-list cols="4"  [style.backgrounde]="'lightblue'">
+    <md-grid-tile [style.background-image]="'url('+getUrl(person.profile_path)+')'" (click)="goProfile(person.id);" *ngFor="let person of persons">
+       <span class="subtittle">
+           <p class="subtittle-text">
+               {{person.name}}
+           </p>
+       </span>
+    </md-grid-tile>
+</md-grid-list>

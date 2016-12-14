@@ -1,10 +1,9 @@
 import { Injectable } from '@angular/core';
 import { Http } from "@angular/http";
-import { moviesList} from './app.moviesStore';
 import { Observable } from 'rxjs';
 
 @Injectable()
-export class MovieService {
+export class TmdbService {
 
   private url = "https://api.themoviedb.org/3/";
   private apiKey = "518d83af872f927b98cfe36a90cd05b0";
@@ -12,14 +11,14 @@ export class MovieService {
   private adult = "false";
 
   constructor(private http: Http) {
-    console.log("A MovieService instance was created");
+    console.log("A TmdbService instance was created");
    }
    
    get(search: string, extra_puts=""): Observable<any> {
          console.log(`${this.url}${search}?api_key=${this.apiKey}&language=${this.language}${extra_puts}`)
     return this.http.get(`${this.url}${search}?api_key=${this.apiKey}&language=${this.language}${extra_puts}`)
       .map(response => {
-        return response.json().results;
+        return response.json();
       });
   }
    
@@ -40,9 +39,10 @@ export class MovieService {
   }
   
   getSearchPerson(query: string, page="1"): Observable<any> {
-    return this.get(`search/person`,
-                    `&query=${query}&page=${page}&include_adult=${this.adult}`
-                    );
+    return this.get(
+      `search/person`,
+      `&query=${query}&page=${page}&include_adult=${this.adult}`
+    );
   }
   
   getImagesPerson(id: string): Observable<any> {

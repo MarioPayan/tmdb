@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { MovieService } from '../movie.service';
-
+import { TmdbService } from '../tmdb.service';
 
 @Component({
   selector: 'home',
@@ -8,47 +7,40 @@ import { MovieService } from '../movie.service';
   styleUrls: ['./home.component.css']
 })
 export class HomeComponent implements OnInit {
-  baseUrl = "http://image.tmdb.org/t/p/w300";
   title = 'app works!';
   movies = [];
 
-  constructor(private movieService: MovieService){}
+  constructor(private tmdbService: TmdbService){}
 
   ngOnInit(){
-    this.movieService.getPopularMovies()
+    this.tmdbService.getPopularMovies()
       .subscribe(movies => {
-        this.movies = movies;
+        this.movies = movies.results;
       });
       
-      
-      this.movieService.getPopularPersons()
+      this.tmdbService.getPopularPersons()
       .subscribe(movies => {
         console.log("getPopularPersons");
-        console.log(movies);
+        console.log(movies.results);
       });
       
-      this.movieService.getDetailPerson("1")
+      this.tmdbService.getDetailPerson("1")
       .subscribe(movies => {
         console.log("getDetailPerson");
         console.log(movies);
       });
       
-      this.movieService.getMovieCreditsPerson("1")
+      this.tmdbService.getMovieCreditsPerson("1")
       .subscribe(movies => {
         console.log("getMovieCreditsPerson");
         console.log(movies);
       });
       
-      this.movieService.getSearchPerson("ale")
+      this.tmdbService.getSearchPerson("ale")
       .subscribe(movies => {
         console.log("getSearchPerson");
-        console.log(movies);
+        console.log(movies.results);
       });
   }
-
-  getUrl(src: string): string {
-    return `${this.baseUrl}${src}`;
-  }
-
 }
 

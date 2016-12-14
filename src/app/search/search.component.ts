@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { MovieService } from '../movie.service';
+import { TmdbService } from '../tmdb.service';
+import { TmdbHelper } from '../tmdb.helper';
 
 @Component({
   selector: 'search',
@@ -9,13 +10,13 @@ import { MovieService } from '../movie.service';
 export class SearchComponent implements OnInit {
   
   private persons = [];
-  constructor(private movieService: MovieService) { }
+  constructor(private tmdbService: TmdbService) { }
 
   ngOnInit() {
   }
   
   search(query: string){
-    this.movieService.getSearchPerson(query)
+    this.tmdbService.getSearchPerson(query)
       .subscribe(persons => {
         this.persons = persons;
       });
