@@ -14,7 +14,6 @@ import { AppComponent } from './app.component';
 import { TmdbService } from './tmdb.service';
 import { SearchComponent } from './search/search.component';
 import { HomeComponent } from './home/home.component';
-import { DashboardComponent } from './dashboard/dashboard.component';
 import { PopularPersonsComponent } from './popular-persons/popular-persons.component';
 import { ProfileComponent } from './profile/profile.component';
 
@@ -23,7 +22,6 @@ import { ProfileComponent } from './profile/profile.component';
     AppComponent,
     SearchComponent,
     HomeComponent,
-    DashboardComponent,
     PopularPersonsComponent,
     ProfileComponent
   ],
@@ -36,7 +34,8 @@ import { ProfileComponent } from './profile/profile.component';
     RouterModule.forRoot(ROUTES, { useHash: false })
   ],
   providers: [
-    TmdbService
+    TmdbService,
+    TmdbHelper
   ],
   bootstrap: [AppComponent]
 })

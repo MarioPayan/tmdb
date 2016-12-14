@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { TmdbService } from '../tmdb.service';
+import { TmdbHelper } from '../tmdb.helper';
 
 @Component({
   selector: 'home',
@@ -7,10 +8,9 @@ import { TmdbService } from '../tmdb.service';
   styleUrls: ['./home.component.css']
 })
 export class HomeComponent implements OnInit {
-  title = 'app works!';
   movies = [];
 
-  constructor(private tmdbService: TmdbService){}
+  constructor(private tmdbService: TmdbService, private tmdbHelper: TmdbHelper){}
 
   ngOnInit(){
     this.tmdbService.getPopularMovies()

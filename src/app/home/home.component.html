@@ -1,7 +1,7 @@
 <md-list>
   <h3 md-subheader>Popular movies</h3>
   <md-list-item *ngFor="let movie of movies">
-    <img class="avatar" md-list-avatar src="{{getUrl(movie.poster_path)}}" alt="...">
+    <img class="avatar" md-list-avatar src="{{tmdbHelper.getUrlSrc(movie.poster_path)}}" alt="...">
     <h3 md-line class="title"> {{movie.title}} </h3>
     <p md-line>
       <span class="vote"> Vote: {{movie.vote_average}} </span>
