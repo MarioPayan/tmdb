@@ -55,5 +55,17 @@ export class TmdbService {
   getVideoMovie(id: string): Observable<any> {
     return this.get(`movie/${id}/videos`);
   }
+  
+  getTopMovies(): Observable<any> {
+    return this.get("movie/top_rated");
+  }
+  
+  getUpcomingPersons(): Observable<any> {
+    return this.get("movie/upcoming");
+  }
+  
+  getNowplayingPersons(): Observable<any> {
+    return this.get("movie/now_playing");
+  }
 
 }

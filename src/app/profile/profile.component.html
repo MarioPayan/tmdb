@@ -4,14 +4,14 @@
            <md-card-header>
               <img md-card-avatar src="{{tmdbHelper.getUrlSrc(person.profile_path)}}">
               <md-card-title>{{person.name}}</md-card-title>
-              <md-card-subtitle>{{person.birthday}} — {{person.deathday}}</md-card-subtitle>
+              <md-card-subtitle *ngIf="person.birthday">{{person.birthday}} — {{person.deathday}}</md-card-subtitle>
            </md-card-header>
            <br>
            <img md-card-image *ngIf="image" src="{{tmdbHelper.getUrlSrc(image)}}">
            <md-card-content>
-              <span [hidden]="!person.popularity"><label>Popularity: </label> <rating [ngModel]="person.popularity" [max]="maxPopularity"></rating> <br></span>
+              <span *ngIf="person.popularity"><label>Popularity: </label> <rating [ngModel]="person.popularity" [max]="maxPopularity"></rating> <br></span>
               <label>Gender: </label> <p>{{person.gender}}</p>
-              <span [hidden]="!person.place_of_birth"><label>Place of birth: </label> <p>{{person.place_of_birth}}</p></span>
+              <span *ngIf="person.place_of_birth"><label>Place of birth: </label> <p>{{person.place_of_birth}}</p></span>
            </md-card-content>
         </md-card>
     </div>

@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, Params } from '@angular/router';
+import { Router, ActivatedRoute, Params } from '@angular/router';
 import { TmdbService } from '../tmdb.service';
 import { TmdbHelper } from '../tmdb.helper';
 import { Subscription } from 'rxjs';
@@ -19,7 +19,8 @@ export class ProfileComponent implements OnInit {
 	constructor(
 		private tmdbService: TmdbService,
 		private tmdbHelper: TmdbHelper,
-		private route: ActivatedRoute
+		private route: ActivatedRoute,
+		private router: Router
 	) { }
 	
 	rewrite(): void{
@@ -70,4 +71,8 @@ export class ProfileComponent implements OnInit {
 				});
 		});
 	}
+	
+	goMovie(id: number): void{
+    this.router.navigate(['/movie', id]);
+  }
 }

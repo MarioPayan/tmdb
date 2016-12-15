@@ -1,7 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { TmdbService } from '../tmdb.service';
 import { TmdbHelper } from '../tmdb.helper';
-import { ActivatedRoute, Params } from '@angular/router';
+import { Router, ActivatedRoute, Params } from '@angular/router';
 import { Subscription } from 'rxjs';
 
 @Component({
@@ -12,12 +12,14 @@ import { Subscription } from 'rxjs';
 export class PersonsCardsComponent implements OnInit {
   
   private persons = [];
+  title = "";
   private subscription: Subscription;
   
   constructor(
 		private tmdbService: TmdbService,
 		private tmdbHelper: TmdbHelper,
-		private route: ActivatedRoute
+		private route: ActivatedRoute,
+		private router: Router
 	) { }
 
   ngOnInit() {
@@ -29,8 +31,13 @@ export class PersonsCardsComponent implements OnInit {
   				.subscribe(persons => {
   					this.persons = persons.results;
   				});
+  				this.title = "Popular persons";
 			}
     });
+  }
+  
+  goProfile(id: number): void{
+    this.router.navigate(['/profile', id]);
   }
 
 }

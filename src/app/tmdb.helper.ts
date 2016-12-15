@@ -8,7 +8,7 @@ export class TmdbHelper {
     if(src){
     return `${this.baseUrlSrc}${src}`;
     }else{
-      return `src/assets/images/no-preview.jpg`;
+      return `assets/images/no-preview.png`;
     }
   }
 }

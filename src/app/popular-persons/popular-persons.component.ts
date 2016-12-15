@@ -21,7 +21,7 @@ export class PopularPersonsComponent implements OnInit {
   ngOnInit() {
     this.tmdbService.getPopularPersons()
       .subscribe(persons => {
-        this.persons = persons.results;
+        this.persons = persons.results.slice(0, 9);;
       });
   }
   

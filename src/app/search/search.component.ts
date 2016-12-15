@@ -55,4 +55,20 @@ export class SearchComponent implements OnInit {
   goPopularPersons(): void{
     this.router.navigate(['/persons', 'popular']);
   }
+  
+  goPopularMovies(): void{
+    this.router.navigate(['/movies', 'popular']);
+  }
+  
+  goTopMovies(): void{
+    this.router.navigate(['/movies', 'top']);
+  }
+  
+  goUpComingMovies(): void{
+    this.router.navigate(['/movies', 'upcoming']);
+  }
+  
+  goNowPlaying(): void{
+    this.router.navigate(['/movies', 'nowplaying']);
+  }
 }
