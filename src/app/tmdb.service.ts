@@ -46,7 +46,7 @@ export class TmdbService {
   }
   
   getImagesPerson(id: string): Observable<any> {
-    return this.get(`/person/${id}/images`);
+    return this.get(`person/${id}/images`);
   }
   
   
