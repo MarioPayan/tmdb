@@ -3,16 +3,22 @@
         <md-card>
            <img md-card-image src="{{tmdbHelper.getUrlSrc(movie.backdrop_path)}}">
            <md-card-content>
-              <span [hidden]="!movie.popularity"><label>Popularity: </label> <rating [ngModel]="movie.popularity" [max]="maxPopularity"></rating> <br></span>
-              <!--<label>Gender: </label> <p>{{person.gender}}</p>-->
-              <!--<span [hidden]="!person.place_of_birth"><label>Place of birth: </label> <p>{{person.place_of_birth}}</p></span>-->
+              <span *ngIf="movie.popularity"><label>Popularity: </label> <rating [ngModel]="movie.popularity" [max]="maxPopularity"></rating> <br></span>
+              <label *ngIf="movie.genres">Genres: </label>
+              <p *ngFor="let genre of movie.genres">{{genre.name}}    </p>
+              <!--<span *ngIf=""><label>Data: </label> <p>Data</p></span>-->
            </md-card-content>
         </md-card>
     </div>
     <div class="col-md-8">
-        <!--<h1>{{person.name}}</h1>-->
-        <!--<p>{{person.biography}}</p>-->
-        
+        <h1>{{movie.original_title}} ({{movie.release_date}})</h1> <br>
+        <h3>Sypnosis</h3>
+        <p>{{movie.overview}}</p>
     </div>
-    
+</div>
+<div *ngIf="video">
+  <iframe width="560" height="315" [src]="getUrlYoutube()" frameborder="0" allowfullscreen></iframe>
+</div>
+<div *ngIf="movie">
+  <movie-cards [filter]="'similar'" [id]="movie.id"></movie-cards>
 </div>

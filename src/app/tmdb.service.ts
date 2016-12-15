@@ -60,12 +60,16 @@ export class TmdbService {
     return this.get("movie/top_rated");
   }
   
-  getUpcomingPersons(): Observable<any> {
+  getUpcomingMovies(): Observable<any> {
     return this.get("movie/upcoming");
   }
   
-  getNowplayingPersons(): Observable<any> {
+  getNowplayingMovies(): Observable<any> {
     return this.get("movie/now_playing");
+  }
+  
+  getSimilarMovies(id): Observable<any> {
+    return this.get(`movie/${id}/similar`);
   }
 
 }

@@ -55,7 +55,6 @@ export class ProfileComponent implements OnInit {
 			this.tmdbService.getImagesPerson(id)
 				.subscribe(imagePerson => {
 					if(imagePerson.profiles){
-						console.log(imagePerson.profiles.length);
 						switch(imagePerson.profiles.length){
 							case 0:
 								this.image = null;

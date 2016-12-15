@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { TmdbService } from '../tmdb.service';
 import { TmdbHelper } from '../tmdb.helper';
 import { Router, ActivatedRoute, Params } from '@angular/router';
@@ -11,8 +11,10 @@ import { Subscription } from 'rxjs';
 })
 export class MovieCardsComponent implements OnInit {
   
+  @Input() filter: string;
+  @Input() id: string;
   private movies = [];
-  title = "";
+  private title = "";
   private subscription: Subscription;
   
   constructor(
@@ -24,33 +26,40 @@ export class MovieCardsComponent implements OnInit {
 
   ngOnInit() {
     this.subscription = this.route.params.subscribe((param: any) => {
-			let filter = param['filter'];
+			if(!this.filter) this.filter = param['filter'];
 			
-			if(filter==='popular'){
+			if(this.filter==='popular'){
   			this.tmdbService.getPopularMovies()
   				.subscribe(movies => {
   					this.movies = movies.results;
   				});
   				this.title = "Popular movies";
-			} else if(filter==='top'){
+			} else if(this.filter==='top'){
   			this.tmdbService.getTopMovies()
   				.subscribe(movies => {
   					this.movies = movies.results;
   				});
   				this.title = "Top movies";
-			} else if(filter==='upcoming'){
-  			this.tmdbService.getUpcomingPersons()
+			} else if(this.filter==='upcoming'){
+  			this.tmdbService.getUpcomingMovies()
   				.subscribe(movies => {
   					this.movies = movies.results;
   				});
   				this.title = "Upcoming movies";
-			} else if(filter==='nowplaying'){
-  			this.tmdbService.getNowplayingPersons()
+			} else if(this.filter==='nowplaying'){
+  			this.tmdbService.getNowplayingMovies()
   				.subscribe(movies => {
   					this.movies = movies.results;
   				});
   				this.title = "Now playing movies";
+			} else if(this.filter==='similar'){
+  			this.tmdbService.getSimilarMovies(this.id)
+  				.subscribe(movies => {
+  					this.movies = movies.results;
+  				});
+  				this.title = "Similar movies";
 			}
+			this.filter = null;
     });
   }
   

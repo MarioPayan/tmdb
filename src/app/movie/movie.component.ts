@@ -11,8 +11,8 @@ import { Subscription } from 'rxjs';
 })
 export class MovieComponent implements OnInit {
   
-  private movie: any; 
-	private video: string; //name key type
+  private movie: any; //release_date
+	private video: any; //name key type
 	private maxPopularity = 5;
 	private subscription: Subscription;
 	
@@ -33,4 +33,9 @@ export class MovieComponent implements OnInit {
 				});
     });
   }
+  
+  getUrlYoutube(): string {
+  		console.log(`https://www.youtube.com/embed/${this.video.key}`);
+    	return `https://www.youtube.com/embed/${this.video.key}`
+    }
 }
