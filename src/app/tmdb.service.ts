@@ -15,8 +15,7 @@ export class TmdbService {
    }
    
    get(search: string, extra_puts=""): Observable<any> {
-         console.log(`${this.url}${search}?api_key=${this.apiKey}&language=${this.language}${extra_puts}`)
-    return this.http.get(`${this.url}${search}?api_key=${this.apiKey}&language=${this.language}${extra_puts}`)
+     return this.http.get(`${this.url}${search}?api_key=${this.apiKey}&language=${this.language}${extra_puts}`)
       .map(response => {
         return response.json();
       });
@@ -49,14 +48,12 @@ export class TmdbService {
     return this.get(`person/${id}/images`);
   }
   
-  
-
-  add(movie: any): void{
-    
+  getDetailMovie(id: string): Observable<any> {
+    return this.get(`movie/${id}`);
   }
-
-  delete(movie) {
-
+  
+  getVideoMovie(id: string): Observable<any> {
+    return this.get(`movie/${id}/videos`);
   }
 
 }

@@ -9,6 +9,7 @@ import { AlertModule } from 'ng2-bootstrap/ng2-bootstrap';
 import { RouterModule } from '@angular/router';
 import { ROUTES } from './app.routes';
 import { TmdbHelper } from './tmdb.helper';
+import { DropdownModule } from 'ng2-bootstrap/components/dropdown';
 
 import { AppComponent } from './app.component';
 import { TmdbService } from './tmdb.service';
@@ -20,6 +21,10 @@ import { RatingModule } from 'ng2-bootstrap/components/rating';
 import { TabsModule } from 'ng2-bootstrap/components/tabs';
 import { CastComponent } from './cast/cast.component';
 import { CrewComponent } from './crew/crew.component';
+import { MovieComponent } from './movie/movie.component';
+import { PopularMoviesComponent } from './popular-movies/popular-movies.component';
+import { MovieCardsComponent } from './movie-cards/movie-cards.component';
+import { PersonsCardsComponent } from './persons-cards/persons-cards.component';
 
 @NgModule({
   declarations: [
@@ -29,7 +34,11 @@ import { CrewComponent } from './crew/crew.component';
     PopularPersonsComponent,
     ProfileComponent,
     CastComponent,
-    CrewComponent
+    CrewComponent,
+    MovieComponent,
+    PopularMoviesComponent,
+    MovieCardsComponent,
+    PersonsCardsComponent
   ],
   imports: [
     BrowserModule,
@@ -37,6 +46,7 @@ import { CrewComponent } from './crew/crew.component';
     HttpModule,
     RatingModule,
     TabsModule,
+    DropdownModule,
     MaterialModule.forRoot(),
     AlertModule,
     RouterModule.forRoot(ROUTES, { useHash: false })

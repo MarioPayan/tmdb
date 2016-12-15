@@ -13,10 +13,14 @@ export class ProfileComponent implements OnInit {
 	
 	private person: any;
 	private image: string;
-	private maxPopularity = 10;
+	private maxPopularity = 5;
 	private subscription: Subscription;
 	
-	constructor(private tmdbService: TmdbService, private tmdbHelper: TmdbHelper, private route: ActivatedRoute) { }
+	constructor(
+		private tmdbService: TmdbService,
+		private tmdbHelper: TmdbHelper,
+		private route: ActivatedRoute
+	) { }
 	
 	rewrite(): void{
 		if (!this.person.deathday) this.person.deathday="present";
@@ -50,15 +54,16 @@ export class ProfileComponent implements OnInit {
 			this.tmdbService.getImagesPerson(id)
 				.subscribe(imagePerson => {
 					if(imagePerson.profiles){
+						console.log(imagePerson.profiles.length);
 						switch(imagePerson.profiles.length){
-							case 2:
-								this.image = imagePerson.profiles[1].file_path;
+							case 0:
+								this.image = null;
 								break;
 							case 1:
 								this.image = imagePerson.profiles[0].file_path;
 								break;
 							default:
-								this.image = null;
+								this.image = imagePerson.profiles[1].file_path;
 								break;
 						}
 					}

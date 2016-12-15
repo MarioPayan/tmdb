@@ -1,0 +1,9 @@
+<md-grid-list cols="4"  [style.backgrounde]="'lightblue'">
+    <md-card (click)="goProfile(person.id);" *ngFor="let person of persons">
+       <md-card-title-group>
+          <img md-card-sm-image src="{{tmdbHelper.getUrlSrc(person.profile_path)}}">
+          <md-card-title>{{person.name}}</md-card-title>
+          <md-card-subtitle *ngIf="person.also_known_as">{{person.also_known_as[0]}}</md-card-subtitle>
+       </md-card-title-group>
+    </md-card>
+</md-grid-list>

@@ -1,0 +1,9 @@
+<md-grid-list cols="4"  [style.backgrounde]="'lightblue'">
+    <md-grid-tile [style.background-image]="'url('+tmdbHelper.getUrlSrc(movie.poster_path)+')'" (click)="goMovie(person.id);" *ngFor="let movie of movies">
+       <span class="subtittle">
+           <p class="subtittle-text">
+               {{movie.original_title}}
+           </p>
+       </span>
+    </md-grid-tile>
+</md-grid-list>

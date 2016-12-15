@@ -1,0 +1,18 @@
+<div class="row" *ngIf="movie">
+    <div class="col-md-4">
+        <md-card>
+           <img md-card-image src="{{tmdbHelper.getUrlSrc(movie.backdrop_path)}}">
+           <md-card-content>
+              <span [hidden]="!movie.popularity"><label>Popularity: </label> <rating [ngModel]="movie.popularity" [max]="maxPopularity"></rating> <br></span>
+              <!--<label>Gender: </label> <p>{{person.gender}}</p>-->
+              <!--<span [hidden]="!person.place_of_birth"><label>Place of birth: </label> <p>{{person.place_of_birth}}</p></span>-->
+           </md-card-content>
+        </md-card>
+    </div>
+    <div class="col-md-8">
+        <!--<h1>{{person.name}}</h1>-->
+        <!--<p>{{person.biography}}</p>-->
+        
+    </div>
+    
+</div>

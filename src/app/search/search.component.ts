@@ -39,7 +39,7 @@ export class SearchComponent implements OnInit {
     this.persons = [];
     this.timer = Observable.timer(1000);
     this.timer.subscribe(() => {
-        this.search(this.query);
+        if (this.query) this.search(this.query);
     });
   }
   
@@ -48,6 +48,11 @@ export class SearchComponent implements OnInit {
   }
   
   goProfile(id: number): void{
+    this.clearList();
     this.router.navigate(['/profile', id]);
+  }
+  
+  goPopularPersons(): void{
+    this.router.navigate(['/persons', 'popular']);
   }
 }
