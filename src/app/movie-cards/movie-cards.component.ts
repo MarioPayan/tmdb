@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, OnChanges } from '@angular/core';
 import { TmdbService } from '../tmdb.service';
 import { TmdbHelper } from '../tmdb.helper';
 import { Router, ActivatedRoute, Params } from '@angular/router';
@@ -9,10 +9,11 @@ import { Subscription } from 'rxjs';
   templateUrl: './movie-cards.component.html',
   styleUrls: ['./movie-cards.component.css']
 })
+
 export class MovieCardsComponent implements OnInit {
   
-  @Input() filter: string;
-  @Input() id: string;
+  @Input() private filter: string;
+  @Input() private id: string;
   private movies = [];
   private title = "";
   private subscription: Subscription;
@@ -27,7 +28,8 @@ export class MovieCardsComponent implements OnInit {
   ngOnInit() {
     this.subscription = this.route.params.subscribe((param: any) => {
 			if(!this.filter) this.filter = param['filter'];
-			
+			//Se guarda un arreglo de peliculas en la variable movies
+			//segun el filtro escogido
 			if(this.filter==='popular'){
   			this.tmdbService.getPopularMovies()
   				.subscribe(movies => {
@@ -55,7 +57,7 @@ export class MovieCardsComponent implements OnInit {
 			} else if(this.filter==='similar'){
   			this.tmdbService.getSimilarMovies(this.id)
   				.subscribe(movies => {
-  					this.movies = movies.results;
+  					this.movies = movies.results.slice(0, 8);;
   				});
   				this.title = "Similar movies";
 			}
@@ -63,6 +65,15 @@ export class MovieCardsComponent implements OnInit {
     });
   }
   
+  ngOnChanges(): any{
+    this.filter = "similar";
+    this.ngOnInit();
+  }
+  
+  /**Metodos encargados de redireccionar al usuario a otro componente
+   * @param {id:number} identificador de un elemento dado para ser detallado
+   * en el componente siguiente
+   * @return {:void} */
   goMovie(id: number): void{
     this.router.navigate(['/movie', id]);
   }

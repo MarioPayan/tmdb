@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, OnChanges } from '@angular/core';
 import { TmdbService } from '../tmdb.service';
 import { TmdbHelper } from '../tmdb.helper';
 import { Router, ActivatedRoute, Params } from '@angular/router';
@@ -9,10 +9,13 @@ import { Subscription } from 'rxjs';
   templateUrl: './persons-cards.component.html',
   styleUrls: ['./persons-cards.component.css']
 })
+
 export class PersonsCardsComponent implements OnInit {
   
+  @Input() private filter: string;
+  @Input() private id: string;
   private persons = [];
-  title = "";
+  private title = "";
   private subscription: Subscription;
   
   constructor(
@@ -24,18 +27,35 @@ export class PersonsCardsComponent implements OnInit {
 
   ngOnInit() {
     this.subscription = this.route.params.subscribe((param: any) => {
-			let filter = param['filter'];
-			
-			if(filter==='popular'){
+			if(!this.filter) this.filter = param['filter'];
+			//Se guarda un arreglo de actores en la variable persons
+			//segun el filtro escogido
+			if(this.filter==='popular'){
   			this.tmdbService.getPopularPersons()
   				.subscribe(persons => {
   					this.persons = persons.results;
   				});
   				this.title = "Popular persons";
+			} else if(this.filter==='cast'){
+  			this.tmdbService.getCastPersons(this.id)
+  				.subscribe(persons => {
+  					this.persons = persons.cast.slice(0,4);
+  				});
+  				this.title = "Important cast";
 			}
+			this.filter = null;
     });
   }
   
+  ngOnChanges(): any{
+    this.filter = "cast";
+    this.ngOnInit();
+  }
+  
+  /**Metodos encargados de redireccionar al usuario a otro componente
+   * @param {id:number} identificador de un elemento dado para ser detallado
+   * en el componente siguiente
+   * @return {:void} */
   goProfile(id: number): void{
     this.router.navigate(['/profile', id]);
   }

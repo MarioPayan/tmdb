@@ -25,6 +25,10 @@ export class PopularPersonsComponent implements OnInit {
       });
   }
   
+  /**Metodos encargados de redireccionar al usuario a otro componente
+   * @param {id:number} identificador de un elemento dado para ser detallado
+   * en el componente siguiente
+   * @return {:void} */
   goProfile(id: number): void{
     this.router.navigate(['/profile', id]);
   }
