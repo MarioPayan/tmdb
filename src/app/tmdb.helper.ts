@@ -5,7 +5,10 @@ export class TmdbHelper {
   constructor() { }
   
   getUrlSrc(src: string): string {
+    if(src){
     return `${this.baseUrlSrc}${src}`;
+    }else{
+      return `assets/images/no-preview.png`;
+    }
   }
-
 }

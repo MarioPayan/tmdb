@@ -1,0 +1,12 @@
+<div class="component" *ngIf="persons">
+    <h1>{{title}}</h1>
+    <md-grid-list cols="4"  [style.backgrounde]="'lightblue'">
+        <md-grid-tile [style.background-image]="'url('+tmdbHelper.getUrlSrc(person.profile_path)+')'" (click)="goProfile(person.id);" *ngFor="let person of persons">
+           <span class="subtittle">
+               <p class="subtittle-text">
+                   <b>{{person.name}}</b>
+               </p>
+           </span>
+        </md-grid-tile>
+    </md-grid-list>
+</div>

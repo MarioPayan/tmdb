@@ -1,8 +1,8 @@
 <md-grid-list cols="3"  [style.backgrounde]="'lightblue'">
-    <md-grid-tile [style.background-image]="'url('+tmdbHelper.getUrlSrc(person.profile_path)+')'" (click)="goProfile(person.id);" *ngFor="let person of persons">
+    <md-grid-tile [style.background-image]="'url('+tmdbHelper.getUrlSrc(movie.poster_path)+')'" (click)="goMovie(movie.id);" *ngFor="let movie of movies">
        <span class="subtittle">
            <p class="subtittle-text">
-               {{person.name}}
+               {{movie.original_title}}
            </p>
        </span>
     </md-grid-tile>

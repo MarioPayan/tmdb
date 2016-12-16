@@ -1,3 +1,7 @@
+.component{
+    padding: 0 12%;
+}
+
 md-grid-tile{
     background-size: cover;
     background-repeat: no-repeat;
@@ -6,7 +10,7 @@ md-grid-tile{
 }
 
 .subtittle{
-    background-color:rgba(0,0,0,0.5);
+    background-color:rgba(0,0,0,0.3);
     position: absolute;
     bottom: 0;
     width: 100%;
@@ -19,8 +23,4 @@ md-grid-tile{
     margin: 0 auto;
     padding: 4%;
     font-family: "Helvetica Neue",Helvetica,Arial,sans-serif !important;
-}
-
-h1{
-    text-align: center;
 }

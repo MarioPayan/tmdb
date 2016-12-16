@@ -1,3 +1,27 @@
-<p>
-  profile works! {{person}}
-</p>
+<div class="row" *ngIf="person">
+    <div class="col-md-4">
+        <md-card>
+           <md-card-header>
+              <img md-card-avatar src="{{tmdbHelper.getUrlSrc(person.profile_path)}}">
+              <md-card-title>{{person.name}}</md-card-title>
+              <md-card-subtitle *ngIf="person.birthday">{{person.birthday}} — {{person.deathday}}</md-card-subtitle>
+           </md-card-header>
+           <br>
+           <img md-card-image *ngIf="image" src="{{tmdbHelper.getUrlSrc(image)}}">
+           <md-card-content>
+              <span *ngIf="person.popularity"><label>Popularity: </label> <rating [ngModel]="person.popularity" [max]="maxPopularity"></rating> <br></span>
+              <label>Gender: </label> <p>{{person.gender}}</p>
+              <span *ngIf="person.place_of_birth"><label>Place of birth: </label> <p>{{person.place_of_birth}}</p></span>
+           </md-card-content>
+        </md-card>
+    </div>
+    <div class="col-md-8">
+        <h1>{{person.name}}</h1>
+        <p>{{person.biography}}</p>
+        <tabset>
+          <tab heading='As cast'><cast [id]="person.id"></cast></tab>
+          <tab heading='As crew'><crew [id]="person.id"></crew></tab>
+        </tabset>
+    </div>
+    
+</div>

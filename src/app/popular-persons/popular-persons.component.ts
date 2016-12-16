@@ -9,28 +9,23 @@ import { Router } from '@angular/router';
   styleUrls: ['./popular-persons.component.css']
 })
 export class PopularPersonsComponent implements OnInit {
-  baseUrl = "http://image.tmdb.org/t/p/w300";
-  persons = []
+  
+  private persons = []
   
   constructor(
     private tmdbService: TmdbService,
+    private tmdbHelper: TmdbHelper,
     private router: Router
   ) { }
 
   ngOnInit() {
     this.tmdbService.getPopularPersons()
       .subscribe(persons => {
-        console.log("getPopularPersons");
-        this.persons = persons.results;
+        this.persons = persons.results.slice(0, 9);;
       });
-  }
-  
-  getUrl(src: string): string {
-    return `${this.baseUrl}${src}`;
   }
   
   goProfile(id: number): void{
     this.router.navigate(['/profile', id]);
   }
-
 }

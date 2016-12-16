@@ -1,0 +1,28 @@
+a{
+    cursor: pointer;
+}
+
+.query-list{
+    width: 350px;
+    background-color: #ffffff;
+    position: absolute;
+    margin-top: 34px;
+    z-index: 100;
+    border-top: 1px solid #dddddd;
+    border-bottom: 1px solid #dddddd;
+    border-left: 1px solid #dddddd;
+    border-right: 1px solid #dddddd;
+}
+
+.profile-image{
+    margin-bottom: 2px;
+    margin-top: 2px;
+}
+
+ul{
+    background-color: rgba(0, 0, 0, 0.71);
+}
+
+.dropdown-item{
+    color: white;
+}

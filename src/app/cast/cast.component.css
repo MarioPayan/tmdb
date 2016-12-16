@@ -4,14 +4,12 @@ md-grid-tile{
     background-position: center center;
     cursor: pointer;
 }
-
 .subtittle{
     background-color:rgba(0,0,0,0.5);
     position: absolute;
     bottom: 0;
     width: 100%;
 }
-
 .subtittle-text{
     text-align: center;
     color: white;
@@ -19,8 +17,4 @@ md-grid-tile{
     margin: 0 auto;
     padding: 4%;
     font-family: "Helvetica Neue",Helvetica,Arial,sans-serif !important;
-}
-
-h1{
-    text-align: center;
 }

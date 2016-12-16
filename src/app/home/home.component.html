@@ -1,12 +1,10 @@
-<md-list>
-  <h3 md-subheader>Popular movies</h3>
-  <md-list-item *ngFor="let movie of movies">
-    <img class="avatar" md-list-avatar src="{{getUrl(movie.poster_path)}}" alt="...">
-    <h3 md-line class="title"> {{movie.title}} </h3>
-    <p md-line>
-      <span class="vote"> Vote: {{movie.vote_average}} </span>
-      <span class="overview"> -- {{movie.overview}} </span>
-    </p>
-    <button md-raised-button color="primary">View</button>
-  </md-list-item>
-</md-list>
+<div class="row">
+    <div class="col-md-6">
+        <h1>Popular persons</h1>
+        <popular-persons></popular-persons>
+    </div>
+    <div class="col-md-6">
+        <h1>Popular movies</h1>
+        <popular-movies></popular-movies>
+    </div>
+</div>
