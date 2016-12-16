@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, OnChanges } from '@angular/core';
 import { TmdbService } from '../tmdb.service';
 import { TmdbHelper } from '../tmdb.helper';
 import { Router } from '@angular/router';
@@ -22,13 +22,21 @@ export class CrewComponent implements OnInit {
   ngOnInit() {
     this.tmdbService.getMovieCreditsPerson(this.id)
       .subscribe(movies => {
-        this.sortMovies();
         this.movies = movies.crew;
+        this.sortMovies();
       });
   }
   
+  ngOnChanges(): any{
+    this.ngOnInit();
+  }
+  
+  /**Ordenamiento de peliculas segun la fecha de lanzamiento
+   * @return {:void} */
   sortMovies(): void {
     this.movies.sort((movieA: any, movieB: any) => {
+      if (movieA.release_date == null) return 1;
+      if (movieB.release_date == null) return -1;
       let dateA = movieA.release_date.split('-');
       let dateB = movieB.release_date.split('-');
       if (dateA[0] > dateB[0]) {
@@ -49,6 +57,18 @@ export class CrewComponent implements OnInit {
     });
   }
   
+  /**Metodo encargado de obtener el anio de una pelicula determinada
+   * @param {movie:any} pelicula extraida de la api de tmdb
+   * @return {:string} anio de lanzamiento de la pelicula*/
+  getYear(movie: any): string {
+    if (movie.release_date) return `(${movie.release_date.split('-')[0]})`;
+    return ""
+  }
+  
+  /**Metodos encargados de redireccionar al usuario a otro componente
+   * @param {id:number} identificador de un elemento dado para ser detallado
+   * en el componente siguiente
+   * @return {:void} */
   goMovie(id: number): void{
     this.router.navigate(['/movie', id]);
   }

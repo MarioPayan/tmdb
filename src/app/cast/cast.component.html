@@ -2,8 +2,11 @@
     <md-grid-tile [style.background-image]="'url('+tmdbHelper.getUrlSrc(movie.poster_path)+')'" (click)="goMovie(movie.id)" *ngFor="let movie of movies">
        <span class="subtittle">
            <p class="subtittle-text">
-               {{movie.title}}
+               {{movie.title}} {{getYear(movie)}}
            </p>
        </span>
     </md-grid-tile>
 </md-grid-list>
+<div *ngIf="!movies">
+    <img src="{{tmdbHelper.getImgNoFound()}}">
+</div>

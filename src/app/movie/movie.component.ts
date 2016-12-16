@@ -11,8 +11,8 @@ import { Subscription } from 'rxjs';
 })
 export class MovieComponent implements OnInit {
   
-  private movie: any; //release_date
-	private video: any; //name key type
+  private movie: any;
+	private video: any;
 	private maxPopularity = 5;
 	private subscription: Subscription;
 	
@@ -25,6 +25,7 @@ export class MovieComponent implements OnInit {
 			this.tmdbService.getDetailMovie(id)
 				.subscribe(movie => {
 					this.movie = movie;
+					this.rewrite();
 				});
 			
 			this.tmdbService.getVideoMovie(id)
@@ -34,8 +35,16 @@ export class MovieComponent implements OnInit {
     });
   }
   
+  /**Separa un valor de la variable date y lo almacena en movie
+   * @return {:void} */
+  rewrite(): void{
+  	this.movie.year = this.movie.release_date.split('-')[0];
+  }
+  
+  /**Crea la url de un video de youtube en base a la key de
+   * la pelicula actual almacenada en la variable video
+   * @return {:string} url del video de youtube*/
   getUrlYoutube(): string {
-  		console.log(`https://www.youtube.com/embed/${this.video.key}`);
     	return `https://www.youtube.com/embed/${this.video.key}`
     }
 }

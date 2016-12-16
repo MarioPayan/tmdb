@@ -3,15 +3,19 @@ a{
 }
 
 .query-list{
-    width: 350px;
+    width: 235px;
     background-color: #ffffff;
     position: absolute;
-    margin-top: 34px;
+    margin-top: 32px;
     z-index: 100;
     border-top: 1px solid #dddddd;
     border-bottom: 1px solid #dddddd;
     border-left: 1px solid #dddddd;
     border-right: 1px solid #dddddd;
+}
+
+.person-tilehover {
+    background-color: yellow;
 }
 
 .profile-image{

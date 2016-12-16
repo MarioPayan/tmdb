@@ -24,17 +24,20 @@ export class SearchComponent implements OnInit {
   ngOnInit() {
   }
   
-  search(query: string){
+  /**Metodo encargado de generar la consulta con la informacion
+   * del actor otorgada
+   * @param {query:string} cadena que almacena la consult
+   * @return {:void} */
+  search(query: string): void{
     this.tmdbService.getSearchPerson(query)
       .subscribe(persons => {
         this.persons = persons.results;
       });
   }
   
-  goHome(): void{
-    this.router.navigate(['']);
-  }
-  
+  /**Metodo encargado de actualizar la lista de resultados despues
+   * de determinado tiempo de que se haya terminado de escribir
+   * @return {:void} */
   queryTyping(): void {
     this.persons = [];
     this.timer = Observable.timer(1000);
@@ -43,12 +46,24 @@ export class SearchComponent implements OnInit {
     });
   }
   
-  clearList(): void {
+  /**Metodo encargado de limpiar el input de la busqueda y desaparecer
+   * de la vista la lista de resultados
+   * @return {:void} */
+  clear(): void {
     this.persons = [];
+    this.query = "";
+  }
+  
+  /**Metodos encargados de redireccionar al usuario a otro componente
+   * @param {id:number} identificador de un elemento dado para ser detallado
+   * en el componente siguiente
+   * @return {:void} */
+  goHome(): void{
+    this.router.navigate(['']);
   }
   
   goProfile(id: number): void{
-    this.clearList();
+    this.clear();
     this.router.navigate(['/profile', id]);
   }
   
